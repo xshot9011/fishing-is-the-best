@@ -10,15 +10,11 @@ def animation(_):
     x = data['x_value']
     y = data['y_value']
     plt.plot(x, y)
-
     
-    # Limit x and y lists to 10 items
     x = x[-300:]
     y = y[-300:]
-    # Draw x and y lists
     ax.clear()
     ax.plot(x, y)
-    # Format plot
     plt.xticks(rotation=45, ha='right')
     plt.subplots_adjust(bottom=0.20)
 
