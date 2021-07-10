@@ -74,7 +74,7 @@ def fishing():
 
 if __name__ == "__main__":
     if model is None:
-    model = load_model(model_path)
+        model = load_model(model_path)
 
     done_lock = False
     fishing_lock = False

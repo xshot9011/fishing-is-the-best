@@ -6,6 +6,7 @@ import numpy as np
 import win32gui
 import win32ui
 import win32con
+import win32api
 
 class ScreenCapture:
     def __init__(self, window_name, image=None, position=[]):
@@ -13,6 +14,7 @@ class ScreenCapture:
         self.image = image
         # position [left,top,right,bottom]
         self.position = position
+        self.window = win32gui.FindWindow(None, window_name)
 
     def _set_position(self, hwnd):
         left, top, right, bottom = win32gui.GetWindowRect(hwnd)
@@ -76,6 +78,16 @@ class ScreenCapture:
             x_step = int(X_FLAG_PROPORTION*width)
             y_step = int(Y_FLAG_PROPORTION*height)
             return self.image[y_start:y_start+y_step, x_start:x_start+x_step]
+    
+    def send_click(self, X_START_PROPORTION=0.75, Y_START_PROPORTION=0.625, X_FLAG_PROPORTION=0.075, Y_FLAG_PROPORTION=0.125):
+        width, height = self.image.shape[1], self.image.shape[0]
+        x_start = int(X_START_PROPORTION*width)
+        y_start = int(Y_START_PROPORTION*height)
+        x_step = int(X_FLAG_PROPORTION*width)
+        y_step = int(Y_FLAG_PROPORTION*height)
+        lParam = win32api.MAKELONG(x_start+x_step, y_start+y_step)
+        win32gui.SendMessage(self.window, win32con.WM_LBUTTONDOWN, win32con.MK_LBUTTON, lParam)
+        win32gui.SendMessage(self.window, win32con.WM_LBUTTONUP, None, lParam)
 
 if __name__ == "__main__":
     # os.chdir(os.path.dirname(os.path.abspath(__file__)))
