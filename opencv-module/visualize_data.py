@@ -1,3 +1,4 @@
+from numpy.core.fromnumeric import mean
 import pandas as pd
 from matplotlib.animation import FuncAnimation
 import matplotlib.pyplot as plt

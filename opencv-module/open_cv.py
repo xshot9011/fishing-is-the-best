@@ -36,6 +36,7 @@ while True:
                 cv2.circle(image, (int(x), int(y)), int(r), (36, 255, 12), -1)
                 count += 1
         
+        # writing data
         with open('data.csv', 'a') as f:
             csv_writer = csv.DictWriter(f, fieldnames=fieldnames)
             info = {
