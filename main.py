@@ -2,14 +2,12 @@ import cv2
 import csv
 import numpy as np
 from numpy.core.fromnumeric import mean
-from numpy.lib.utils import info
 import pandas as pd
 import win32gui
 import win32ui
 import win32con
 import win32api
 import time
-import matplotlib.pyplot as plt
 
 class ScreenCapture:
     __slots__ = [
